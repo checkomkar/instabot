@@ -15,7 +15,7 @@ urls = (
 class index:
     def GET(self):
     	info = api.username_info(username)        
-        return json.dumps(info, indent=4, sort_keys=True)
+		return json.dumps(info, indent=4, sort_keys=True)
 
 class getUserInfo:
     def GET(self):
