@@ -10,10 +10,10 @@ import logging
 import argparse
 import itertools
 
-username = 'freqeffetcs'
+username = 'stratus009'
 password = 'enter_saNdy3k'
 myId = '19335645'
-settings_file = './settings2.json'
+settings_file = './settings.json'
 
 # myId = '25025320'
 # with open('settings.json', 'r') as myfile:
