@@ -1,5 +1,6 @@
 import web
 from cachedSettings import *
+from pprint import pprint
 
 api = run_cached()
 
@@ -33,6 +34,8 @@ from auto_follow_api import autoFollow
 from auto_like_api import autoLikeComment
 
 if __name__ == "__main__":
-    app = web.application(urls, globals())
-    #app.run()
+    app = web.application(urls, globals())    
+    pprint(web.ctx)
+    # app.run()
+
     app = app.wsgifunc()
