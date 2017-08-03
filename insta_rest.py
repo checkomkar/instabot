@@ -43,4 +43,5 @@ if __name__ == "__main__":
     #     app.run()
     # else:
     #     app = app.wsgifunc()
-    app.run()
+    # app.run()
+    app = app.wsgifunc()
