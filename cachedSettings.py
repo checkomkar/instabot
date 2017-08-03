@@ -13,8 +13,8 @@ import itertools
 username = 'stratus009'
 password = 'enter_saNdy3k'
 myId = '19335645'
-# settings_file = './settings.json'
-settings_file = '/home/checkomkar/instabot/settings.json'
+settings_file = './settings.json'
+# settings_file = '/home/checkomkar/instabot/settings.json'
 # myId = '25025320'
 # with open('settings.json', 'r') as myfile:
 #     data=myfile.read().replace('\n', '')

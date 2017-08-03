@@ -11,6 +11,9 @@ comments = ['Wow! O.O (y)', 'Very Nice :) love it', 'Awesome! Keep em coming!', 
 
 class autoLikeComment:
 	def GET(self):
+		getTag = web.input(tag='travelstagram')
+		if getTag != None:
+			tags.append(getTag)
 		nxtPageId = None
 		catchedMediaIds = None
 		mediadict = {}
