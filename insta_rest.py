@@ -34,4 +34,5 @@ from auto_like_api import autoLikeComment
 
 if __name__ == "__main__":
     app = web.application(urls, globals())
-    app.run()
+    #app.run()
+    app = app.wsgifunc()
