@@ -36,6 +36,8 @@ from auto_follow_api import autoFollow
 from auto_like_api import autoLikeComment
 from auto_unfollow_api import autoUnfollow
 
-if __name__ == "__main__":
-    app = web.application(urls, globals())
-    app = app.wsgifunc()
+app = web.application(urls, globals())
+app = app.wsgifunc()
+
+# if __name__ == "__main__":
+    
