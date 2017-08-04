@@ -37,11 +37,5 @@ from auto_like_api import autoLikeComment
 from auto_unfollow_api import autoUnfollow
 
 if __name__ == "__main__":
-    app = web.application(urls, globals())    
-    # pprint(web.ctx)
-    # if web.ctx.home == 'http://localhost:8080':
-    #     app.run()
-    # else:
-    #     app = app.wsgifunc()
-    # app.run()
+    app = web.application(urls, globals())
     app = app.wsgifunc()
