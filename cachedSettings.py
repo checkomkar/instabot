@@ -10,11 +10,11 @@ import logging
 import argparse
 import itertools
 
-username = 'stratus009'
-password = 'enter_saNdy3k'
+username = 'stra.tus'
+password = 'enter_sandy3K'
 myId = '19335645'
-# settings_file = './settings.json'
-settings_file = '/home/checkomkar/instabot/settings.json'
+settings_file = './settings.json'
+# settings_file = '/home/checkomkar/instabot/settings.json'
 # myId = '25025320'
 # with open('settings.json', 'r') as myfile:
 #     data=myfile.read().replace('\n', '')

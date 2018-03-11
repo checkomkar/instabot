@@ -1,6 +1,6 @@
 from instagram_private_api import (Client, ClientCompatPatch, ClientError, ClientLoginError, 
-									ClientCookieExpiredError, 
-									ClientLoginRequiredError, __version__ as client_version)
+                                    ClientCookieExpiredError, 
+                                    ClientLoginRequiredError, __version__ as client_version)
 import json
 import codecs
 import time
@@ -14,8 +14,15 @@ username = 'stratus009'
 password = 'enter_saNdy3k'
 myId = '19335645'
 settings_file = './settings.json'
-tags = ['travelstagram', 'travelphotography', 'photography', 'summer', 'summerbody',  'instagood', 'babesofinstagram']
-comments = ['Wow! O.O (y)', 'Very Nice :) love it', 'Awesome! Keep em coming!', 'Just Love it!', 'Super like! O.o']
+tags = ["nature", "bitemykitchen", "PleaseForgiveMe", "sky", "sun", "summer", "beach", "beautiful", 
+            "pretty", "sunset", "sunrise", "blue", "flowers", "night", "tree", "twilight", "clouds", 
+            "beauty", "light", "cloudporn", "photooftheday", "love", "green", "skylovers", "dusk", "weather", 
+            "day", "red", "mothernature", "models", "babes", "travel", "travelphotography", "travelchannel", "travelandleisure"]
+comments = ['Wow! O.O (y)', 'Such splendid.', 'Overly alluring shot =)', 
+            'This is revolutionary work =)', 'Incredible work you have here.', 'Very Nice :) love it', 
+            'Awesome! Keep em coming!', 'Magnificent. So amazing.', 'Just cool!', 'Cool shot.',
+            'It\'s excellent not just good!', 
+            'Just Love it!', 'Super like! O.o']
 # myId = '25025320'
 # with open('settings.json', 'r') as myfile:
 #     data=myfile.read().replace('\n', '')
@@ -54,8 +61,9 @@ nxtPageId = None
 catchedMediaIds = None
 mediadict = {}
 mediaIdsArray = []
-
+random.shuffle(tags)
 for tag in tags:
+    print 'Tag:', tag
     searchFeeds = api.feed_tag(tag)
     nextmaxId = searchFeeds['next_max_id']
 
@@ -96,18 +104,29 @@ for tag in tags:
     likecount = 0
     for count, m_id in enumerate(mediaIdsArray, 1):
         print 'Media:', m_id
+        isLiked = False
+        likers = api.media_likers(m_id['id'])
+        # print json.dumps(likers, indent=4, sort_keys=True)
+        for liker in likers['users']:
+            # print 'Liker: ', liker
+            if liker['username'] != 'stra.tus':
+                isliked = True
+                break
+        
+        if isliked == False:     
+            if count % 5 == 0:
+                commentStatus = api.post_comment(m_id['id'], random.choice(comments))
+                print json.dumps(commentStatus, indent=4, sort_keys=True) 
+
+        time.sleep(4) 
         status = api.post_like(m_id['id'])
-        time.sleep(4)
 
         if status['status'] == 'ok':
             likecount = likecount + 1
             minfo = api.media_comments(m_id['id'])
-            print json.dumps(minfo, indent=4, sort_keys=True)
+            # print json.dumps(minfo, indent=4, sort_keys=True)
 
-        if count % 5 == 0:
-            commentStatus = api.post_comment(m_id['id'], random.choice(comments))
-            print json.dumps(commentStatus, indent=4, sort_keys=True)
-            
+        
         print json.dumps(status, indent=4, sort_keys=True)
         print likecount
 
