@@ -57,37 +57,17 @@ except (ClientCookieExpiredError, ClientLoginRequiredError) as e:
         print('ClientCookieExpiredError/ClientLoginRequiredError: {0!s}'.format(e))
 
 
-nxtPageId = None
-catchedMediaIds = None
-mediadict = {}
-mediaIdsArray = []
-random.shuffle(tags)
-for tag in tags:
-    print 'Tag:', tag
-    searchFeeds = api.feed_tag(tag)
-    nextmaxId = searchFeeds['next_max_id']
-
-    for media in searchFeeds['items']:    
-        if media['caption'] is not None:
-            if 'media_id' in media['caption']:
-                # print json.dumps(media['media']['caption']['media_id'], indent=4, sort_keys=True)
-                mediadict['code'] = media['code']
-                mediadict['id'] = media['caption']['media_id']
-                mediaIdsArray.append(mediadict.copy())
-
-    for media in searchFeeds['ranked_items']:    
-        if media['caption'] is not None:
-            if 'media_id' in media['caption']:
-                # print json.dumps(media['media']['caption']['media_id'], indent=4, sort_keys=True)
-                mediadict['code'] = media['code']
-                mediadict['id'] = media['caption']['media_id']
-                mediaIdsArray.append(mediadict.copy())
-    # with open("dump.json", "w") as json_file:
-    #     json.dump(mediaIdsArray, json_file)
-
-    for _ in itertools.repeat(None, 20):
-        searchFeeds = api.feed_tag(tag, max_id = nextmaxId)
+def auto_like_tags():
+    nxtPageId = None
+    catchedMediaIds = None
+    mediadict = {}
+    mediaIdsArray = []
+    random.shuffle(tags)
+    for tag in tags:
+        print 'Tag:', tag
+        searchFeeds = api.feed_tag(tag)
         nextmaxId = searchFeeds['next_max_id']
+
         for media in searchFeeds['items']:    
             if media['caption'] is not None:
                 if 'media_id' in media['caption']:
@@ -95,40 +75,70 @@ for tag in tags:
                     mediadict['code'] = media['code']
                     mediadict['id'] = media['caption']['media_id']
                     mediaIdsArray.append(mediadict.copy())
-    # with open("dump.json", "w") as json_file:
-    #     json.dump(mediaIdsArray, json_file)   
 
-    print 'Array Length:', len(mediaIdsArray)
-    # print map(str, mediaIdsArray)
+        for media in searchFeeds['ranked_items']:    
+            if media['caption'] is not None:
+                if 'media_id' in media['caption']:
+                    # print json.dumps(media['media']['caption']['media_id'], indent=4, sort_keys=True)
+                    mediadict['code'] = media['code']
+                    mediadict['id'] = media['caption']['media_id']
+                    mediaIdsArray.append(mediadict.copy())
+        # with open("dump.json", "w") as json_file:
+        #     json.dump(mediaIdsArray, json_file)
 
-    likecount = 0
-    for count, m_id in enumerate(mediaIdsArray, 1):
-        print 'Media:', m_id
-        isLiked = False
-        likers = api.media_likers(m_id['id'])
-        # print json.dumps(likers, indent=4, sort_keys=True)
-        for liker in likers['users']:
-            # print 'Liker: ', liker
-            if liker['username'] != 'stra.tus':
-                isliked = True
-                break
-        
-        if isliked == False:     
-            if count % 5 == 0:
-                commentStatus = api.post_comment(m_id['id'], random.choice(comments))
-                print json.dumps(commentStatus, indent=4, sort_keys=True) 
+        for _ in itertools.repeat(None, 20):
+            searchFeeds = api.feed_tag(tag, max_id = nextmaxId)
+            nextmaxId = searchFeeds['next_max_id']
+            for media in searchFeeds['items']:    
+                if media['caption'] is not None:
+                    if 'media_id' in media['caption']:
+                        # print json.dumps(media['media']['caption']['media_id'], indent=4, sort_keys=True)
+                        mediadict['code'] = media['code']
+                        mediadict['id'] = media['caption']['media_id']
+                        mediaIdsArray.append(mediadict.copy())
+        # with open("dump.json", "w") as json_file:
+        #     json.dump(mediaIdsArray, json_file)   
 
-        time.sleep(4) 
-        status = api.post_like(m_id['id'])
+        print 'Array Length:', len(mediaIdsArray)
+        # print map(str, mediaIdsArray)
 
-        if status['status'] == 'ok':
-            likecount = likecount + 1
-            minfo = api.media_comments(m_id['id'])
-            # print json.dumps(minfo, indent=4, sort_keys=True)
+        likecount = 0
+        for count, m_id in enumerate(mediaIdsArray, 1):
+            print 'Media:', m_id
+            isLiked = False
+            likers = api.media_likers(m_id['id'])
+            # print json.dumps(likers, indent=4, sort_keys=True)
+            for liker in likers['users']:
+                # print 'Liker: ', liker
+                if liker['username'] != 'stra.tus':
+                    isliked = True
+                    break
+            
+            if isliked == False:     
+                if count % 5 == 0:
+                    commentStatus = api.post_comment(m_id['id'], random.choice(comments))
+                    print json.dumps(commentStatus, indent=4, sort_keys=True) 
 
-        
-        print json.dumps(status, indent=4, sort_keys=True)
-        print likecount
+            time.sleep(4) 
+            status = api.post_like(m_id['id'])
+
+            if status['status'] == 'ok':
+                likecount = likecount + 1
+                minfo = api.media_comments(m_id['id'])
+                # print json.dumps(minfo, indent=4, sort_keys=True)
+
+            
+            print json.dumps(status, indent=4, sort_keys=True)
+            print likecount
 
 
     
+def queryRepeatedly():
+    while True:
+        try:
+            auto_like_tags()
+        except:
+            continue
+        time.sleep(15)
+
+queryRepeatedly()
