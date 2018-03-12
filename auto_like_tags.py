@@ -153,7 +153,7 @@ def auto_like_tags(isliked = False):
                 commentStatus = api.post_comment(m_id['id'], random.choice(comments))
                 print json.dumps(commentStatus, indent=4, sort_keys=True) 
                 # print random.choice(comments)                
-                time.sleep(10)
+                time.sleep(20)
             
             isliked = False 
             status = api.post_like(m_id['id'])
@@ -166,7 +166,7 @@ def auto_like_tags(isliked = False):
             
             print json.dumps(status, indent=4, sort_keys=True)
             print likecount
-            time.sleep(4)
+            time.sleep(10)
 
 # auto_like_tags(isliked = False)
     
