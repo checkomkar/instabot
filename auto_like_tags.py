@@ -13,7 +13,8 @@ import random
 username = 'stratus009'
 password = 'enter_saNdy3k'
 myId = '19335645'
-settings_file = './settings.json'
+# settings_file = './settings.json'
+settings_file = '/home/checkomkar/instabot/settings.json'
 tags = ["nature", "bitemykitchen", "PleaseForgiveMe", "sky", "sun", "summer", "beach", "beautiful", 
             "pretty", "sunset", "sunrise", "blue", "flowers", "night", "tree", "twilight", "clouds", 
             "beauty", "light", "cloudporn", "photooftheday", "love", "green", "skylovers", "dusk", "weather", 
