@@ -105,21 +105,21 @@ def auto_like_tags():
         likecount = 0
         for count, m_id in enumerate(mediaIdsArray, 1):
             print 'Media:', m_id
-            isLiked = False
-            likers = api.media_likers(m_id['id'])
-            # print json.dumps(likers, indent=4, sort_keys=True)
-            for liker in likers['users']:
-                # print 'Liker: ', liker
-                if liker['username'] != 'stra.tus':
-                    isliked = True
-                    break
+            # isLiked = False
+            # likers = api.media_likers(m_id['id'])
+            # # print json.dumps(likers, indent=4, sort_keys=True)
+            # for liker in likers['users']:
+            #     # print 'Liker: ', liker
+            #     if liker['username'] != 'stra.tus':
+            #         isliked = True
+            #         break
             
-            if isliked == False:     
-                if count % 5 == 0:
-                    commentStatus = api.post_comment(m_id['id'], random.choice(comments))
-                    print json.dumps(commentStatus, indent=4, sort_keys=True) 
+            # if isliked == False:     
+            #     if count % 5 == 0:
+            #         commentStatus = api.post_comment(m_id['id'], random.choice(comments))
+            #         print json.dumps(commentStatus, indent=4, sort_keys=True) 
 
-            time.sleep(4) 
+            # time.sleep(4) 
             status = api.post_like(m_id['id'])
 
             if status['status'] == 'ok':
