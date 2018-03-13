@@ -166,6 +166,8 @@ def auto_like_tags(isliked = False):
             
             print json.dumps(status, indent=4, sort_keys=True)
             print likecount
+            if likecount == 50:
+                time.sleep(200)
             time.sleep(10)
 
 # auto_like_tags(isliked = False)
@@ -176,6 +178,6 @@ def queryRepeatedly():
             auto_like_tags(isliked = False)
         except:
             continue
-        time.sleep(15)
+        time.sleep(300)
 
 queryRepeatedly()
