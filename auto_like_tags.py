@@ -39,7 +39,7 @@ if not is_lock_free():
 
 
 username = 'stra.tus'
-password = 'enter_sandy3K'
+password = 'enter_sandmany3k'
 myId = '19335645'
 settings_file = './settings.json'
 # settings_file = '/home/checkomkar/instabot/settings.json'
@@ -48,11 +48,11 @@ tags = ["nature", "bitemykitchen", "PleaseForgiveMe", "sky", "sun", "summer", "b
             "pretty", "sunset", "sunrise", "blue", "flowers", "night", "tree", "twilight", "clouds", 
             "beauty", "light", "cloudporn", "photooftheday", "love", "green", "skylovers", "dusk", "weather", 
             "day", "red", "mothernature", "models", "babes", "sexy", "travel", 
-            "travelphotography", "travelchannel", "travelandleisure", "cat", "pussycat", "tagblender", 
-            "picoftheday", "tbt", "kitten", "picpets", "vida", "pets", "nature", "me", "awesome_shots", 
+            "travelphotography", "travelchannel", "travelandleisure", "tagblender", 
+            "picoftheday", "tbt", "picpets", "vida", "pets", "nature", "me", "awesome_shots", 
             "nature_shooters", "cute", "instagood", "love", "kittensofinstagram", "love", 
-            "cat", "sweet", "meow", "tweegram", 
-            "photooftheday", "animales", "catsofinstagram", "pet", "animals", "instamood", "iphonesia", "fauna"]
+            "sweet", "tweegram", 
+            "photooftheday", "animales", "catsofinstagram", "animals", "instamood", "iphonesia", "fauna"]
 comments = ['Wow! O.O (y)', 'Such splendid.', 'Overly alluring shot =)', 
             'This is revolutionary work =)', 'Incredible work you have here.', 'Very Nice :) love it', 
             'Awesome! Keep em coming!', 'Magnificent. So amazing.', 'Just cool!', 'Cool shot.',
@@ -166,7 +166,7 @@ def auto_like_tags(isliked = False):
             
             print json.dumps(status, indent=4, sort_keys=True)
             print likecount
-            if likecount == 50:
+            if likecount % 50 == 0:
                 time.sleep(200)
             time.sleep(10)
 
