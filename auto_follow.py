@@ -9,8 +9,8 @@ import os.path
 import logging
 import argparse
 import itertools
-username = 'stratus009'
-password = 'enter_saNdy3k'
+username = 'stra.tus'
+password = 'enter_sandy3K'
 myId = '19335645'
 settings_file = './settings.json'
 # myId = '25025320'
@@ -49,9 +49,9 @@ except (ClientCookieExpiredError, ClientLoginRequiredError) as e:
 
 userinfo = api.username_info('adilmahfud_')
 userfollowers = api.user_followers(userinfo['user']['pk'])
-# print json.dumps(userfollowers['users'], indent=4, sort_keys=True)
+print json.dumps(userfollowers['users'], indent=4, sort_keys=True)
 print len(userfollowers['users'])
-users = userfollowers['users']
+'''users = userfollowers['users']
 count = 0
 for user in users:
     status = api.friendships_create(user['pk'])
@@ -61,4 +61,4 @@ for user in users:
     print count
     if count % 20 == 0:
         time.sleep(300)
-print 'Total followed:', count
+print 'Total followed:', count'''

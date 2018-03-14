@@ -10,14 +10,49 @@ import logging
 import argparse
 import itertools
 import random
-username = 'stratus009'
-password = 'enter_saNdy3k'
+import logging
+import socket
+import sys
+
+
+lock_socket = None  # we want to keep the socket open until the very end of
+                    # our script so we use a global variable to avoid going
+                    # out of scope and being garbage-collected
+
+def is_lock_free():
+    global lock_socket
+    lock_socket = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
+    try:
+        lock_id = "checkomkar.autoliketags"   # this should be unique. using your username as a prefix is a convention
+        lock_socket.bind('\0' + lock_id)
+        logging.debug("Acquired lock %r" % (lock_id,))
+        return True
+    except socket.error:
+        # socket already locked, task must already be running
+        logging.info("Failed to acquire lock %r" % (lock_id,))
+        return False
+
+if not is_lock_free():
+    sys.exit()
+
+
+
+
+username = 'stra.tus'
+password = 'enter_sandmany3k'
 myId = '19335645'
 settings_file = './settings.json'
+# settings_file = '/home/checkomkar/instabot/settings.json'
+
 tags = ["nature", "bitemykitchen", "PleaseForgiveMe", "sky", "sun", "summer", "beach", "beautiful", 
             "pretty", "sunset", "sunrise", "blue", "flowers", "night", "tree", "twilight", "clouds", 
             "beauty", "light", "cloudporn", "photooftheday", "love", "green", "skylovers", "dusk", "weather", 
-            "day", "red", "mothernature", "models", "babes", "travel", "travelphotography", "travelchannel", "travelandleisure"]
+            "day", "red", "mothernature", "models", "babes", "sexy", "travel", 
+            "travelphotography", "travelchannel", "travelandleisure", "tagblender", 
+            "picoftheday", "tbt", "picpets", "vida", "pets", "nature", "me", "awesome_shots", 
+            "nature_shooters", "cute", "instagood", "love", "kittensofinstagram", "love", 
+            "sweet", "tweegram", 
+            "photooftheday", "animales", "catsofinstagram", "animals", "instamood", "iphonesia", "fauna"]
 comments = ['Wow! O.O (y)', 'Such splendid.', 'Overly alluring shot =)', 
             'This is revolutionary work =)', 'Incredible work you have here.', 'Very Nice :) love it', 
             'Awesome! Keep em coming!', 'Magnificent. So amazing.', 'Just cool!', 'Cool shot.',
@@ -57,7 +92,7 @@ except (ClientCookieExpiredError, ClientLoginRequiredError) as e:
         print('ClientCookieExpiredError/ClientLoginRequiredError: {0!s}'.format(e))
 
 
-def auto_like_tags():
+def auto_like_tags(isliked = False):
     nxtPageId = None
     catchedMediaIds = None
     mediadict = {}
@@ -103,42 +138,46 @@ def auto_like_tags():
         # print map(str, mediaIdsArray)
 
         likecount = 0
+        
         for count, m_id in enumerate(mediaIdsArray, 1):
-            print 'Media:', m_id
-            # isLiked = False
-            # likers = api.media_likers(m_id['id'])
-            # # print json.dumps(likers, indent=4, sort_keys=True)
-            # for liker in likers['users']:
-            #     # print 'Liker: ', liker
-            #     if liker['username'] != 'stra.tus':
-            #         isliked = True
-            #         break
+            print 'Media:', m_id            
+            likers = api.media_likers(m_id['id'])
+            # print json.dumps(likers, indent=4, sort_keys=True)
+            for liker in likers['users']:
+                # print 'Liker: ', json.dumps(liker, indent=4, sort_keys=True)
+                if liker['username'] == 'stra.tus':
+                    isliked = True
+                    break
             
-            # if isliked == False:     
-            #     if count % 5 == 0:
-            #         commentStatus = api.post_comment(m_id['id'], random.choice(comments))
-            #         print json.dumps(commentStatus, indent=4, sort_keys=True) 
-
-            # time.sleep(4) 
+            if isliked == False and count % 5 == 0:  
+                commentStatus = api.post_comment(m_id['id'], random.choice(comments))
+                print json.dumps(commentStatus, indent=4, sort_keys=True) 
+                # print random.choice(comments)                
+                time.sleep(20)
+            
+            isliked = False 
             status = api.post_like(m_id['id'])
 
             if status['status'] == 'ok':
                 likecount = likecount + 1
-                minfo = api.media_comments(m_id['id'])
+                # minfo = api.media_comments(m_id['id'])
                 # print json.dumps(minfo, indent=4, sort_keys=True)
 
             
             print json.dumps(status, indent=4, sort_keys=True)
             print likecount
+            if likecount % 50 == 0:
+                time.sleep(200)
+            time.sleep(10)
 
-
+# auto_like_tags(isliked = False)
     
 def queryRepeatedly():
     while True:
         try:
-            auto_like_tags()
+            auto_like_tags(isliked = False)
         except:
             continue
-        time.sleep(15)
+        time.sleep(300)
 
 queryRepeatedly()
