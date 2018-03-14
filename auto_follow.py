@@ -10,7 +10,7 @@ import logging
 import argparse
 import itertools
 username = 'stra.tus'
-password = 'enter_sandy3K'
+password = 'enter_sandmany3k'
 myId = '19335645'
 settings_file = './settings.json'
 # myId = '25025320'

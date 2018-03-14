@@ -49,8 +49,8 @@ tags = ["nature", "bitemykitchen", "PleaseForgiveMe", "sky", "sun", "summer", "b
             "beauty", "light", "cloudporn", "photooftheday", "love", "green", "skylovers", "dusk", "weather", 
             "day", "red", "mothernature", "models", "babes", "sexy", "travel", 
             "travelphotography", "travelchannel", "travelandleisure", "tagblender", 
-            "picoftheday", "tbt", "picpets", "vida", "pets", "nature", "me", "awesome_shots", 
-            "nature_shooters", "cute", "instagood", "love", "kittensofinstagram", "love", 
+            "picoftheday", "tbt", "picpets", "vida", "nature", "me", "awesome_shots", 
+            "nature_shooters", "cute", "instagood", "love", "kittensofinstagram", 
             "sweet", "tweegram", 
             "photooftheday", "animales", "catsofinstagram", "animals", "instamood", "iphonesia", "fauna"]
 comments = ['Wow! O.O (y)', 'Such splendid.', 'Overly alluring shot =)', 
