@@ -47,10 +47,10 @@ settings_file = './settings.json'
 tags = ["nature", "bitemykitchen", "PleaseForgiveMe", "sky", "sun", "summer", "beach", "beautiful", 
             "pretty", "sunset", "sunrise", "blue", "flowers", "night", "tree", "twilight", "clouds", 
             "beauty", "light", "cloudporn", "photooftheday", "love", "green", "skylovers", "dusk", "weather", 
-            "day", "red", "mothernature", "models", "babes", "sexy", "travel", 
-            "travelphotography", "travelchannel", "travelandleisure", "tagblender", 
-            "picoftheday", "tbt", "picpets", "vida", "nature", "me", "awesome_shots", 
-            "nature_shooters", "cute", "instagood", "love", "kittensofinstagram", 
+            "day", "red", "mothernature", "models", "babes", "travel", "mountains", "roadtrips", "music",
+            "travelphotography", "travelchannel", "travelandleisure", "splendid", "instagram", "portrait",
+            "picoftheday", "tbt", "vida", "nature", "me", "awesome_shots", 
+            "nature_shooters", "cute", "instagood", "love", 
             "sweet", "tweegram", 
             "photooftheday", "animales", "catsofinstagram", "animals", "instamood", "iphonesia", "fauna"]
 comments = ['Wow! O.O (y)', 'Such splendid.', 'Overly alluring shot =)', 
@@ -167,7 +167,7 @@ def auto_like_tags(isliked = False):
             print json.dumps(status, indent=4, sort_keys=True)
             print likecount
             if likecount % 50 == 0:
-                time.sleep(200)
+                time.sleep(300)
             time.sleep(10)
 
 # auto_like_tags(isliked = False)
