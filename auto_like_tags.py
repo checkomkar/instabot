@@ -38,7 +38,7 @@ if not is_lock_free():
 
 
 
-username = 'stra.tus'
+username = '5tratus_'
 password = 'enter_sandmany3k'
 myId = '19335645'
 settings_file = './settings.json'
@@ -47,17 +47,17 @@ settings_file = './settings.json'
 tags = ["nature", "bitemykitchen", "PleaseForgiveMe", "sky", "sun", "summer", "beach", "beautiful", 
             "pretty", "sunset", "sunrise", "blue", "flowers", "night", "tree", "twilight", "clouds", 
             "beauty", "light", "cloudporn", "photooftheday", "love", "green", "skylovers", "dusk", "weather", 
-            "day", "red", "mothernature", "models", "babes", "sexy", "travel", 
+            "day", "red", "mothernature", "models", "babes", "sexy", "travel", "astro",
             "travelphotography", "travelchannel", "travelandleisure", "tagblender", 
             "picoftheday", "tbt", "picpets", "vida", "nature", "me", "awesome_shots", 
             "nature_shooters", "cute", "instagood", "love", "kittensofinstagram", 
             "sweet", "tweegram", 
             "photooftheday", "animales", "catsofinstagram", "animals", "instamood", "iphonesia", "fauna"]
-comments = ['Wow! O.O (y)', 'Such splendid.', 'Overly alluring shot =)', 
-            'This is revolutionary work =)', 'Incredible work you have here.', 'Very Nice :) love it', 
-            'Awesome! Keep em coming!', 'Magnificent. So amazing.', 'Just cool!', 'Cool shot.',
+comments = ['Wow! O.O', 'Such splendid...', 'Overly alluring shot :)', 
+            'This is revolutionary work =)', 'Incredible work you have here. (y)', 'Very Nice :) love it...', 
+            'Awesome! Keep em coming!', 'Magnificent. So amazing. ', 'Just cool!!', 'Cool shot...',
             'It\'s excellent not just good!', 
-            'Just Love it!', 'Super like! O.o']
+            'Just Love it! O.o', 'Super like! o.O']
 # myId = '25025320'
 # with open('settings.json', 'r') as myfile:
 #     data=myfile.read().replace('\n', '')
@@ -168,7 +168,7 @@ def auto_like_tags(isliked = False):
             print likecount
             if likecount % 50 == 0:
                 time.sleep(200)
-            time.sleep(10)
+            time.sleep(20)
 
 # auto_like_tags(isliked = False)
     

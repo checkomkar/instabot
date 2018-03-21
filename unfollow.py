@@ -54,42 +54,23 @@ users = ['eyebrows_tutorial', 'makeupgoals', 'eyelinertutorial', 'adilmahfud_', 
 
 follows = []
 count = 0
-for user in users:    
-    userinfo = api.username_info(user)
-    userfollowers = api.user_followers(userinfo['user']['pk'])
-    # print json.dumps(userfollowers['users'], indent=4, sort_keys=True)
-    for idx, u in enumerate(userfollowers['users']):
-        follows.append(u['pk'])
-        
-        # print u['pk']
-    print len(userfollowers['users'])
-    '''users = userfollowers['users']
-    count = 0
-    for user in users:
-        status = api.friendships_create(user['pk'])
-        time.sleep(1)
-        count = count+1
-        print 'Followed username:', user['username']
-        print count
-        if count % 20 == 0:
-            time.sleep(300)
-    print 'Total followed:', count'''
 
-for idx, u in enumerate(follows):
-    status = api.friendships_create(u)
+
+
+
+# with open('follows.json', 'wb') as fp:
+#     pickle.dump(follows, fp)
+
+with open ('follows.json', 'rb') as fp:
+    itemlist = pickle.load(fp)
+# print itemlist
+
+for idx, u in enumerate(itemlist):
+    status = api.friendships_destroy(u)
     print json.dumps(status, indent=4, sort_keys=True)
-    time.sleep(randint(5, 9))
+    time.sleep(randint(3, 5))
     count = count+1
     # print 'Followed username:', u['username']
     print count
     if count % 20 == 0:
         time.sleep(300)
-    if (idx+1) % 160 == 0:
-        time.sleep(60*60)
-
-with open('follows.json', 'wb') as fp:
-    pickle.dump(follows, fp)
-
-with open ('follows.json', 'rb') as fp:
-    itemlist = pickle.load(fp)
-# print itemlist
