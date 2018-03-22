@@ -3,6 +3,7 @@ coverage.sh
 cov_html/
 
 venv/
+virenv/
 venv3/
 .vscode/
 docs/_build
