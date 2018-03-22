@@ -50,7 +50,7 @@ except (ClientCookieExpiredError, ClientLoginRequiredError) as e:
         print('ClientCookieExpiredError/ClientLoginRequiredError: {0!s}'.format(e))
 
 
-users = ['eyebrows_tutorial', 'makeupgoals', 'eyelinertutorial', 'adilmahfud_', 'thehughjackman', 'tomcruise']
+users = ['makeupere', 'hairvideeos', 'makeupbemineshop', 'adilmahfud_', 'amazing.fashions', 'tomcruise']
 
 follows = []
 count = 0
