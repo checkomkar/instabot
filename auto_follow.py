@@ -75,7 +75,16 @@ for user in users:
             time.sleep(300)
     print 'Total followed:', count'''
 
-for idx, u in enumerate(follows):
+
+
+with open('follows.json', 'wb') as fp:
+    pickle.dump(follows, fp)
+
+with open ('follows.json', 'rb') as fp:
+    itemlist = pickle.load(fp)
+# print itemlist
+
+for idx, u in enumerate(itemlist):
     status = api.friendships_create(u)
     print json.dumps(status, indent=4, sort_keys=True)
     time.sleep(randint(5, 9))
@@ -86,10 +95,3 @@ for idx, u in enumerate(follows):
         time.sleep(300)
     if (idx+1) % 160 == 0:
         time.sleep(60*60)
-
-with open('follows.json', 'wb') as fp:
-    pickle.dump(follows, fp)
-
-with open ('follows.json', 'rb') as fp:
-    itemlist = pickle.load(fp)
-# print itemlist
